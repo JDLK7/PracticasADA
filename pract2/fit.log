@@ -248,3 +248,41 @@ correlation matrix of the fit parameters:
                 a      b      
 a               1.000 
 b              -0.506  1.000 
+
+
+*******************************************************************************
+Thu Feb 16 18:53:18 2017
+
+
+FIT:    data read from 'salida_bubble.txt' using 1:2
+        format = x:z
+        #datapoints = 9
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+	y(x) = a*x**2 + b*x + c
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c            
+   0 1.9677170268e+19   0.00e+00  8.54e+08    1.000000e+00   1.000000e+00   1.000000e+00
+  13 7.7287101045e-04  -7.28e-09  8.54e-05    3.508360e-09  -8.946231e-06   1.178127e-02
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 0.000772871
+rel. change during last iteration : -7.28066e-14
+
+degrees of freedom    (FIT_NDF)                        : 6
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.0113495
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.000128812
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 3.50836e-09      +/- 1.05e-11     (0.2993%)
+b               = -8.94623e-06     +/- 6.797e-07    (7.598%)
+c               = 0.0117813        +/- 0.005427     (46.06%)
+
+correlation matrix of the fit parameters:
+                a      b      c      
+a               1.000 
+b              -0.963  1.000 
+c               0.522 -0.635  1.000 
