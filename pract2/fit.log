@@ -140,3 +140,111 @@ correlation matrix of the fit parameters:
                 a      b      
 a               1.000 
 b              -0.506  1.000 
+
+
+*******************************************************************************
+Thu Feb 16 18:43:21 2017
+
+
+FIT:    data read from 'salida_quicksort.txt' using 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+	y(x) = a*x*log(x) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 5.2954715016e+15   0.00e+00  1.55e+07    1.000000e+00   1.000000e+00
+   4 8.1812151924e+00  -5.29e-01  1.55e+03   -1.923437e-08   9.999999e-01
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 8.18122
+rel. change during last iteration : -5.28647e-06
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.953427
+variance of residuals (reduced chisquare) = WSSR/ndf   : 0.909024
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = -1.92344e-08     +/- 1.519e-08    (78.96%)
+b               = 1                +/- 0.3332       (33.32%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.506  1.000 
+
+
+*******************************************************************************
+Thu Feb 16 18:44:44 2017
+
+
+FIT:    data read from 'salida_quicksort.txt'
+        format = z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+	y(x) = a*x*log(x) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 8.1812151924e+00   0.00e+00  7.67e-01   -1.923437e-08   9.999999e-01
+   4 1.0859540019e-06  -7.22e-04  7.67e-05    3.812329e-09   2.770273e-04
+
+After 4 iterations the fit converged.
+final sum of squares of residuals : 1.08595e-06
+rel. change during last iteration : -7.21776e-09
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000347364
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.20662e-07
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 3.81233e-09      +/- 5.533e-12    (0.1451%)
+b               = 0.000277027      +/- 0.0001214    (43.83%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.506  1.000 
+
+
+*******************************************************************************
+Thu Feb 16 18:45:12 2017
+
+
+FIT:    data read from 'salida_quicksort.txt' using 1:2
+        format = x:z
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: y(x)
+	y(x) = a*x*log(x) + b
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b            
+   0 1.0859540019e-06   0.00e+00  5.91e-02    3.812329e-09   2.770273e-04
+   1 1.0859540019e-06   0.00e+00  5.91e+00    3.812329e-09   2.770273e-04
+
+After 1 iterations the fit converged.
+final sum of squares of residuals : 1.08595e-06
+rel. change during last iteration : 0
+
+degrees of freedom    (FIT_NDF)                        : 9
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 0.000347364
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.20662e-07
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 3.81233e-09      +/- 5.533e-12    (0.1451%)
+b               = 0.000277027      +/- 0.0001214    (43.83%)
+
+correlation matrix of the fit parameters:
+                a      b      
+a               1.000 
+b              -0.506  1.000 
