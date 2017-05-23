@@ -8,12 +8,15 @@
 #include <fstream>
 #include <vector>
 #include <climits>
+#include <queue>
 
 using namespace std;
 
 bool p = false;
 string fichero;
 int llamadasRecursivas;
+
+typedef tuple<double,int> node; //cotaOpt,v
 
 const int NUM_MOVIMIENTOS = 3;
 
@@ -115,15 +118,6 @@ void leerMapa(ifstream &f, int &n, int &m, vector< vector<int> > &mapa) {
     }
 }
 
-int minimo(int a, int b, int c) {
-    if(a<=b && a<=c)
-        return a;
-    if(b<=a && b<=c)
-        return b;
-    if(c<=a && c<=b)
-        return c;
-}
-
 void insertarNodo(vector<vector<int>> &camino, const int &i, const int &j) {
     if(p) {
         vector<int> nodo;
@@ -134,45 +128,56 @@ void insertarNodo(vector<vector<int>> &camino, const int &i, const int &j) {
     }
 }
 
+int minimo(int a, int b, int c) {
+    if(a<=b && a<=c)
+        return a;
+    if(b<=a && b<=c)
+        return b;
+    if(c<=a && c<=b)
+        return c;
+}
+
 // i,n -> fila
 // j,m -> columna
-int backtrack(int i, int j, const int &n, const int &m, 
-            const vector<vector<int>> &mapa,
-            vector<vector<int>> &caminoActual,
-            vector<vector<int>> &caminoMejor,
-            int actual, int mejor) {
-    
-    llamadasRecursivas++;
+int voraz(int &i, int &j, const int &n, const int &m, const vector<vector<int>> &mapa, vector<vector<int>> &camino) {
+    if(p) {
+        vector<int> nodo;
+        nodo.push_back(i);
+        nodo.push_back(j);
+
+        camino.push_back(nodo);
+    } 
 
     //Ultima casilla
-    if(i == (n-1) && j == (m-1)) {
+    if(i == (n-1) && j == (m-1))
         return mapa[i][j];
-    }
     //Ultima fila, solo derecha
-    else if(i == (n-1)) {
-        actual = mapa[i][j] + backtrack(i, (j+1), n, m, mapa, caminoActual, caminoMejor, actual, mejor);
-        insertarNodo(caminoActual, i, j);
-    }
+    else if(i == (n-1))
+        return mapa[i][j] + voraz(i, ++j, n, m, mapa, camino);
     //Ultima columna, solo abajo
-    else if(j == (m-1)) {
-        actual = mapa[i][j] + backtrack((i+1), j, n, m, mapa, caminoActual, caminoMejor, actual, mejor);
-        insertarNodo(caminoActual, i, j);        
-    }
+    else if(j == (m-1))
+        return mapa[i][j] + voraz(++i, j, n, m, mapa, camino);
     else {
-        int diagonal = mapa[i][j] + backtrack((i+1), (j+1), n, m, mapa, caminoActual, caminoMejor, actual, mejor);
-        int derecha = mapa[i][j] + backtrack(i, (j+1), n, m, mapa, caminoActual, caminoMejor, actual, mejor);
-        int abajo = mapa[i][j] + backtrack((i+1), j, n, m, mapa, caminoActual, caminoMejor, actual, mejor);
+        int derecha = mapa[i][(j+1)];
+        int abajo = mapa[(i+1)][j];
+        int diagonal = mapa[(i+1)][(j+1)];
 
-        actual = minimo(diagonal, derecha, abajo);
-        insertarNodo(caminoActual, i, j);        
+        int min = minimo(derecha, abajo, diagonal);
+
+        if(min == diagonal)
+            return mapa[i][j] + voraz(++i, ++j, n, m, mapa, camino);
+        else if(min == derecha)
+            return mapa[i][j] + voraz(i, ++j, n, m, mapa, camino);
+        else if(min == abajo)
+            return mapa[i][j] + voraz(++i, j, n, m, mapa, camino);
     }
+}
 
-    if(actual < mejor) {
-        mejor = actual;
-        caminoMejor = caminoActual;
-    }
+int ramificacionPoda(node &nodo, priority_queue<node> &pq) {
+    int cota;
+    int valor;
 
-    return mejor;
+    tie(cota, valor) = nodo;
 }
 
 int main(int argc, char** argv) {
@@ -187,9 +192,21 @@ int main(int argc, char** argv) {
     llamadasRecursivas = 0;
     leerMapa(f, n, m, mapa);
     vector<vector<int>> caminoActual, caminoMejor;
+
+    //Ramificacion y poda
+    int cotaOpt = INT_MIN;
+    int cotaPes = INT_MAX;
+
+    priority_queue<node> pq;
+    pq.push(cotaOpt, mapa[0][0]);
+
+    while(!pq.empty()) {
+        node nodo = pq.top();
+        pq.pop();
+        ramificacionPoda(nodo, n, m, mapa);
+    }
     
     cout << "Peso del \"mejor\" camino: " 
-         << backtrack(i,j,n,m,mapa,caminoActual,caminoMejor,0,mejor) 
          << endl; 
 
     cout << "Llamadas recursivas: " 

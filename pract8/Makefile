@@ -2,7 +2,7 @@
 #20097305C
 
 all:
-	g++ -o caminante_voraz caminante_voraz.cc
+	g++ -o caminante_BT caminante_BT.cc
 
 clean:
-	rm caminante_voraz
+	rm caminante_BT
